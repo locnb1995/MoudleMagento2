@@ -9,6 +9,8 @@
         print_r($item->getData());
         echo "</pre>";
     }*/
+    $store = $block->getStoreId();
+    //var_dump($store);exit;
 ?>
 <table class="table">
     <thead class="thead-dark">
@@ -22,7 +24,7 @@
     </thead>
     <tbody>
     <?php foreach($block->getPostCollection() as $item=>$post) {
-            if ($post['status'] == 1) {?>
+            if ($post['status'] == 1 && $post['store_id'] == $store) {?>
             <tr>
                 <th scope="row"><?php echo $post['id']; ?></th>
                 <td><?php echo $post['title']; ?></td>
@@ -37,6 +39,8 @@
         ?>
     </tbody>
 </table>
+<?php
+?>
 
 
 

@@ -29,7 +29,7 @@ class Uninstall implements UninstallInterface
         $installer = $setup;
         $installer->startSetup();
 
-        $installer->getConnection()->dropTable($installer->getTable('mageplaza_helloworld_post'));
+        $installer->getConnection()->dropTable($installer->getTable('loc_post_post'));
 
         $installer->endSetup();
     }

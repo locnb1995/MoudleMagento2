@@ -13,7 +13,8 @@ class Test extends \Magento\Framework\App\Action\Action
 {
     public function execute()
     {
-        $textDisplay = new \Magento\Framework\DataObject(array('text' => 'Loc'));
+        $demo = 'LocNb';
+        $textDisplay = new \Magento\Framework\DataObject(array('text' => $demo));
         $this->_eventManager->dispatch('loc_post_display_text', ['mp_text' => $textDisplay]);
         echo $textDisplay->getText();
         exit;

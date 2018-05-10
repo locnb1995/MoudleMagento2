@@ -37,7 +37,9 @@ class InstallData implements InstallDataInterface
             'title'         => "Demo Post",
             'post_description' => "Posts are automatically generated",
             'image'      => 'image5.jpg',
-            'status'       => 1
+            'status'       => 1,
+            'observer'  => 'Created at : '.date('Y-m-d H:i:s'),
+            'store_id' => 1
         ];
         $post = $this->_postFactory->create();
         $post->addData($data)->save();

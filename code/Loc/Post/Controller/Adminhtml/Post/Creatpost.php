@@ -63,8 +63,16 @@ class Creatpost  extends \Magento\Backend\App\Action
             $des = $data['post_description'];
             $status = $data['status'];
             $image = $data['image'][0]['name'];
-            $sql = "Insert Into " . $tableName . " (title, post_description, image, status) Values ('".$title."','".$des."','".$image."','".$status."')";
+            $store_id = $data['store_id'][0];
+            if($store_id == 0){
+                $store_id = 1;
+            }
+            $sql = "Insert Into " . $tableName . " (title, post_description, image, status, store_id) Values ('".$title."','".$des."','".$image."','".$status."','".$store_id."')";
             $conn->query($sql);
+
+            $action = 'Created at : '.date('Y-m-d H:i:s');
+            $textDisplay = new \Magento\Framework\DataObject(array('text' => $action));
+            $this->_eventManager->dispatch('loc_post_display_action', ['action_text' => $textDisplay]);
 
             $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('*/*/index');
@@ -73,16 +81,25 @@ class Creatpost  extends \Magento\Backend\App\Action
             $title = $data['title'];
             $des = $data['post_description'];
             $status = $data['status'];
+            $store_id = $data['store_id'][0];
+            if($store_id == 0){
+                $store_id = 1;
+            }
+
+            $action = 'Updated at : '.date('Y-m-d H:i:s');
+            $textDisplay = new \Magento\Framework\DataObject(array('text' => $data['id']));
+            $this->_eventManager->dispatch('loc_post_display_action', ['id' => $textDisplay]);
+
             if(isset($data['image'][0]['name'])){
                 $image = $data['image'][0]['name'];
-                $sql = "UPDATE ".$tableName." SET title='$title',post_description='$des',image='$image',status='$status' WHERE id=".$data['id'];
+                $sql = "UPDATE ".$tableName." SET title='$title',post_description='$des',image='$image',status='$status',store_id='$store_id' WHERE id=".$data['id'];
                 $conn->query($sql);
 
                 $resultRedirect = $this->resultRedirectFactory->create();
                 $resultRedirect->setPath('*/*/index');
                 return $resultRedirect;
             } else{
-                $sql = "UPDATE ".$tableName." SET title='$title',post_description='$des',status='$status' WHERE id=".$data['id'];
+                $sql = "UPDATE ".$tableName." SET title='$title',post_description='$des',status='$status',store_id='$store_id' WHERE id=".$data['id'];
                 $conn->query($sql);
 
                 $resultRedirect = $this->resultRedirectFactory->create();

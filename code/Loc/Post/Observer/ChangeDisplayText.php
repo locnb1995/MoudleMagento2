@@ -16,7 +16,6 @@ class ChangeDisplayText implements \Magento\Framework\Event\ObserverInterface
         $displayText = $observer->getData('mp_text');
         echo $displayText->getText() . " - Event </br>";
         $displayText->setText('Execute event successfully.');
-
         return $this;
     }
 }

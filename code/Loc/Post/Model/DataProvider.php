@@ -56,8 +56,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             //var_dump($item->getImagePath());exit;
             if (isset($_data['image'])) {
                 $image = [];
-                //$image[0]['name'] = $item->getImage();
-                //$image[0]['url'] = $this->imageModel->getMediaUrl().'loc_post/files/tmp'.$item->getImage();
                 $_data['image'] = $image;
             }
             $item->setData($_data);

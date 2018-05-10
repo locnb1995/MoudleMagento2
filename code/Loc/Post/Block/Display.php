@@ -40,4 +40,7 @@ class Display extends \Magento\Framework\View\Element\Template
                 ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'loc_post/files/tmp/';
         return $mediaUrl;
     }
+    public function getStoreId(){
+        return $this->storeManager->getStore()->getId();
+    }
 }

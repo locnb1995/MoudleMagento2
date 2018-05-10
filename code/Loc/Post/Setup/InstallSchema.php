@@ -72,6 +72,20 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     'Post Status'
                 )
                 ->addColumn(
+                    'observer',
+                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    255,
+                    [],
+                    'Observer'
+                )
+                ->addColumn(
+                    'store_id',
+                    \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                    10,
+                    [],
+                    'Store_id'
+                )
+                ->addColumn(
                     'created_at',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
                     null,
@@ -90,10 +104,10 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 $installer->getTable('loc_post_post'),
                 $setup->getIdxName(
                     $installer->getTable('loc_post_post'),
-                    ['name','post_description','image','status'],
+                    ['title','post_description','image','status','observer','store_id'],
                     \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
                 ),
-                ['title','post_description','image','status'],
+                ['title','post_description','image','status','observer','store_id'],
                 \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
             );
         }
