@@ -1,0 +1,46 @@
+<?php
+/**
+ * @var \Loc\Post\Block\Display $block
+ */
+
+    //print_r($block->getPostCollection());exit();
+    /*foreach($block->getPostCollection() as $item){
+        echo "<pre>";
+        print_r($item->getData());
+        echo "</pre>";
+    }*/
+    $store = $block->getStoreId();
+    //var_dump($store);exit;
+?>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($block->getPostCollection() as $item=>$post) {
+            if ($post['status'] == 1 && $post['store_id'] == $store) {?>
+            <tr>
+                <th scope="row"><?php echo $post['id']; ?></th>
+                <td><?php echo $post['title']; ?></td>
+                <td><?php echo $post['post_description']; ?></td>
+                <td><img src='<?php echo $block->getMediaUrl().$post['image']; ?>'
+                         style="width: 200px; height: 100px;"></td>
+                <td><?php echo "Enabled"; ?></td>
+            </tr>
+        <?php
+            }
+        }
+        ?>
+    </tbody>
+</table>
+<?php
+?>
+
+
+
