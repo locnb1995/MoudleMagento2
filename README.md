@@ -1,2 +1,2 @@
 # MoudleMagento2
-Set Up
+Basic Module : Show , Add , Update , Delete , Observer and simple Store View
